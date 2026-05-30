@@ -11,8 +11,8 @@
     
     <style>
         :root {
-            --primary-color: #1e3a8a; /* Deep Navy */
-            --accent-color: #f59e0b; /* Bright Amber/Orange */
+            --primary-color: #1e3a8a;
+            --accent-color: #f59e0b;
             --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             --card-bg: rgba(255, 255, 255, 0.95);
             --text-main: #1e293b;
@@ -20,7 +20,7 @@
         }
 
         * {
-            box-shadow: border-box;
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
@@ -34,7 +34,6 @@
             justify-content: center;
             padding: 20px;
             color: #fff;
-            position: relative;
         }
 
         .container {
@@ -45,17 +44,12 @@
             padding: 40px 30px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             color: var(--text-main);
-            z-index: 1;
-            position: relative;
             backdrop-filter: blur(10px);
-        }
-
-        /* Logo Area */
-        .header-section {
             text-align: center;
-            margin-bottom: 35px;
         }
 
+        /* Header (লোগো সব সময় সবার উপরে থাকবে) */
+        .header-section { margin-bottom: 35px; }
         .logo-container {
             width: 110px;
             height: 110px;
@@ -69,23 +63,8 @@
             overflow: hidden;
             border: 3px solid var(--primary-color);
         }
-
-        .logo-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .brand-name {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
-        }
-
-        /* Moto Style */
+        .logo-img { width: 100%; height: 100%; object-fit: cover; }
+        .brand-name { font-size: 28px; font-weight: 700; color: var(--primary-color); margin-bottom: 5px; }
         .motto-box {
             background: #eff6ff;
             padding: 8px 15px;
@@ -94,34 +73,13 @@
             margin-bottom: 10px;
             border: 1px dashed #bfdbfe;
         }
-
-        .motto-text {
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--primary-color);
-            letter-spacing: 1px;
-            font-family: 'Poppins', sans-serif;
-        }
+        .motto-text { font-size: 11px; font-weight: 700; color: var(--primary-color); font-family: 'Poppins', sans-serif; }
 
         /* Form Styling */
-        .form-group {
-            margin-bottom: 22px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 14px;
-            font-weight: 600;
-            color: #334155;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-        }
-
-        .form-group label i {
-            margin-right: 6px;
-            color: var(--primary-color);
-        }
-
+        #formCard { display: none; text-align: left; }
+        .form-group { margin-bottom: 22px; }
+        .form-group label { display: block; font-size: 14px; font-weight: 600; color: #334155; margin-bottom: 8px; }
+        .form-group label i { margin-right: 6px; color: var(--primary-color); }
         .form-control {
             width: 100%;
             padding: 14px 18px;
@@ -129,25 +87,11 @@
             border: 2px solid #cbd5e1;
             border-radius: 10px;
             background-color: #f8fafc;
-            color: #0f172a;
             outline: none;
             transition: all 0.3s;
         }
-
-        .form-control:focus {
-            border-color: var(--primary-color);
-            background-color: #fff;
-            box-shadow: 0 0 0 4px rgba(30, 58, 138, 0.15);
-        }
-
-        .helper-text {
-            display: block;
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-top: 5px;
-        }
-
-        /* Submit Button */
+        .form-control:focus { border-color: var(--primary-color); background-color: #fff; box-shadow: 0 0 0 4px rgba(30, 58, 138, 0.15); }
+        .helper-text { display: block; font-size: 12px; color: var(--text-muted); margin-top: 5px; }
         .submit-btn {
             width: 100%;
             padding: 16px;
@@ -161,76 +105,68 @@
             box-shadow: 0 8px 16px rgba(30, 58, 138, 0.25);
             transition: all 0.3s;
         }
+        .submit-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
 
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            filter: brightness(1.1);
-        }
-
-        /* Success Card Styling */
-        .success-card {
-            display: none;
-            text-align: center;
-            animation: fadeIn 0.5s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .success-icon {
-            width: 80px;
-            height: 80px;
-            background: #dcfce7;
-            color: #16a34a;
+        /* Timer / Waiting Section */
+        #waitingCard { display: none; }
+        .time-notice { font-size: 18px; font-weight: 700; color: #dc2626; margin-bottom: 25px; line-height: 1.6; }
+        
+        /* Pure CSS Analog Clock */
+        .clock {
+            width: 160px;
+            height: 160px;
+            border: 6px solid var(--primary-color);
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
             margin: 0 auto 25px;
+            position: relative;
+            background: #fff;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.1), 0 8px 16px rgba(0,0,0,0.1);
         }
-
-        .success-header {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            line-height: 1.5;
+        .clock::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #dc2626;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
         }
-
-        .exam-details {
-            background: #f8fafc;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-left: 5px solid var(--accent-color);
-            text-align: left;
+        .hand {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: bottom;
+            background: #1e293b;
+            border-radius: 4px;
         }
+        .hour { width: 4px; height: 40px; }
+        .minute { width: 3px; height: 55px; }
+        .second { width: 1.5px; height: 65px; background: #dc2626; }
 
-        .exam-info-row {
-            font-size: 16px;
-            color: var(--text-main);
-            margin-bottom: 10px;
-            font-weight: 600;
+        /* Digital Countdown */
+        .countdown-title { font-size: 15px; font-weight: 600; color: var(--text-main); margin-bottom: 10px; }
+        .countdown-container { display: flex; justify-content: center; gap: 10px; }
+        .countdown-box {
+            background: #1e3a8a;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 8px;
+            min-width: 65px;
         }
+        .countdown-number { font-size: 20px; font-weight: 700; font-family: 'Poppins', sans-serif; }
+        .countdown-label { font-size: 11px; margin-top: 2px; color: #93c5fd; }
 
-        .exam-info-row:last-child { margin-bottom: 0; }
+        /* Success & Expired Card */
+        .success-card, #expiredCard { display: none; }
+        .success-icon { width: 80px; height: 80px; background: #dcfce7; color: #16a34a; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 40px; margin: 0 auto 25px; }
+        .success-header { font-size: 20px; font-weight: 700; color: var(--primary-color); margin-bottom: 20px; line-height: 1.5; }
+        .exam-details { background: #f8fafc; border-radius: 12px; padding: 20px; margin-bottom: 20px; border-left: 5px solid var(--accent-color); text-align: left; }
+        .exam-info-row { font-size: 16px; color: var(--text-main); margin-bottom: 10px; font-weight: 600; }
         .exam-info-row span { color: #ef4444; font-weight: 700; }
-
-        .notice-box {
-            background: #fffbeb;
-            border: 1px solid #fde68a;
-            border-radius: 12px;
-            padding: 18px;
-            font-size: 15px;
-            color: #b45309;
-            line-height: 1.6;
-            font-weight: 600;
-            text-align: justify;
-        }
-
+        .notice-box { background: #fffbeb; border: 1px solid #fde68a; border-radius: 12px; padding: 18px; font-size: 15px; color: #b45309; line-height: 1.6; font-weight: 600; text-align: justify; }
         .notice-highlight { color: #dc2626; font-weight: 700; }
         .footer-credit { margin-top: 25px; font-size: 12px; color: var(--text-muted); }
     </style>
@@ -239,77 +175,165 @@
 
     <div class="container">
         
-        <div id="formCard">
-            <div class="header-section">
-                <div class="logo-container">
-                    <img src="https://i.ibb.co/6R22qg5b/study-zone-logo.png" alt="Study Zone Logo" class="logo-img">
-                </div>
-                
-                <h1 class="brand-name">STUDY ZONE</h1>
-                
-                <div class="motto-box">
-                    <span class="motto-text">STUDY TOGETHER, LEARN TOGETHER & ACHIEVE TOGETHER</span>
-                </div>
+        <div class="header-section">
+            <div class="logo-container">
+                <img src="logo.png" alt="Study Zone Logo" class="logo-img">
+            </div>
+            <h1 class="brand-name">STUDY ZONE</h1>
+            <div class="motto-box">
+                <span class="motto-text">STUDY TOGETHER, LEARN TOGETHER & ACHIEVE TOGETHER</span>
+            </div>
+        </div>
+
+        <div id="waitingCard">
+            <p class="time-notice"><i class="fa-solid fa-clock fa-spin"></i> REGISTRATION শুরু হবে 31 তারিখ সকাল 11:00 টা থেকে</p>
+            
+            <div class="clock">
+                <div class="hand hour" id="hourHand"></div>
+                <div class="hand minute" id="minHand"></div>
+                <div class="hand second" id="secHand"></div>
             </div>
 
+            <p class="countdown-title">রেজিস্ট্রেশন শুরু হতে বাকি:</p>
+            <div class="countdown-container">
+                <div class="countdown-box"><div class="countdown-number" id="days">00</div><div class="countdown-label">দিন</div></div>
+                <div class="countdown-box"><div class="countdown-number" id="hours">00</div><div class="countdown-label">ঘণ্টা</div></div>
+                <div class="countdown-box"><div class="countdown-number" id="minutes">00</div><div class="countdown-label">মিনিট</div></div>
+                <div class="countdown-box"><div class="countdown-number" id="seconds">00</div><div class="countdown-label">সেকেন্ড</div></div>
+            </div>
+        </div>
+
+        <div id="formCard">
             <form id="quizForm">
                 <div class="form-group">
                     <label><i class="fa-solid fa-user"></i> Name</label>
                     <input type="text" name="Name" class="form-control" placeholder="আপনার সম্পূর্ণ নাম লিখুন" required autocomplete="off">
                 </div>
-
                 <div class="form-group">
                     <label><i class="fa-solid fa-calendar-days"></i> Date of Birth (DD-MM-YYYY)</label>
                     <input type="text" id="dob" name="DOB" class="form-control" placeholder="যেমন: 15-08-2002" required maxlength="10" autocomplete="off">
-                    <small class="helper-text">কীবোর্ড ব্যবহার করে ম্যানুয়ালি দিন-মাস-বছর লিখুন।</small>
                 </div>
-
                 <div class="form-group">
                     <label><i class="fa-solid fa-user-shield"></i> Father's Name</label>
                     <input type="text" name="FatherName" class="form-control" placeholder="আপনার বাবার নাম লিখুন" required autocomplete="off">
                 </div>
-
                 <div class="form-group">
                     <label><i class="fa-solid fa-phone"></i> Phone Number</label>
-                    <input type="tel" name="Phone" class="form-control" placeholder="১০ ডিজিটের মোবাইল নম্বর দিন" required pattern="[0-9]{10}" title="অনুগ্রহ করে ১০ ডিজিটের একটি বৈধ মোবাইল নম্বর দিন" autocomplete="off">
-                    <small class="helper-text">উদাহরণ: 9876543210</small>
+                    <input type="tel" name="Phone" class="form-control" placeholder="১০ ডিজিটের মোবাইল নম্বর দিন" required pattern="[0-9]{10}" autocomplete="off">
                 </div>
-
                 <div class="form-group">
                     <label><i class="fa-solid fa-envelope"></i> Email Number</label>
                     <input type="email" name="Email" class="form-control" placeholder="আপনার সচল ইমেইল আইডি দিন" required autocomplete="off">
                 </div>
-
                 <button type="submit" class="submit-btn" id="submitBtn">রেজিস্ট্রেশন সাবমিট করুন</button>
             </form>
         </div>
 
         <div id="successCard" class="success-card">
             <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
-            
-            <h2 class="success-header">
-                SSC SELECTION POST PHASE XIV MOCK TEST - POWERED BY 'STUDY ZONE'
-            </h2>
-
+            <h2 class="success-header">SSC SELECTION POST PHASE XIV MOCK TEST - POWERED BY 'STUDY ZONE'</h2>
             <div class="exam-details">
                 <div class="exam-info-row">EXAM DATE: <span>06 JUNE 2026</span></div>
                 <div class="exam-info-row">EXAM TIME: <span>11:00 A.M. (I.S.T.)</span></div>
             </div>
-
             <div class="notice-box">
                 এক্সাম এর জন্য প্রয়োজনীয় আইডি পাসওয়ার্ড <span class="notice-highlight">05 জুন 2026 তারিখে বিকেল 4:30 (I.S.T.)</span> এর পরে রেজিস্টার্ড ইমেইল এ দিয়ে দেওয়া হবে, STAY TUNED.
             </div>
-
-            <p class="footer-credit">© 2026 STUDY ZONE. All Rights Reserved.</p>
         </div>
 
+        <div id="expiredCard">
+            <div class="success-icon" style="background:#fee2e2; color:#ef4444;"><i class="fa-solid fa-circle-xmark"></i></div>
+            <h2 class="success-header" style="color:#dc2626;">রেজিস্ট্রেশন সময়কাল অতিক্রান্ত হয়েছে</h2>
+            <div class="notice-box" style="text-align:center; background:#f8fafc; border-color:#cbd5e1; color:#1e293b; font-size:16px;">
+                <strong>BETTER LUCK FOR NEXT TIME, STAY TUNED.</strong>
+            </div>
+        </div>
+
+        <p class="footer-credit">© 2026 STUDY ZONE. All Rights Reserved.</p>
     </div>
 
     <script>
-        // --- আপনার Sheet.best এর কানেকশন লিংকটি এখানে যুক্ত করা হয়েছে ---
         const targetURL = 'https://api.sheetbest.com/sheets/9adbc3dd-ca31-465a-ad7f-326c6706aea0';
+        
+        // ফর্ম চালুর এবং বন্ধের সময় (২০২৬ সাল)
+        const startTime = new Date("May 31, 2026 11:00:00").getTime();
+        const endTime = new Date("June 5, 2026 16:00:00").getTime();
 
-        // DOB অটো-হাইফেন লজিক (DD-MM-YYYY ফরম্যাটের জন্য)
+        // অ্যানালগ ঘড়ির নিখুঁত লজিক
+        function updateAnalogClock() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+
+            const hourDeg = (hours % 12) * 30 + minutes * 0.5;
+            const minDeg = minutes * 6;
+            const secDeg = seconds * 6;
+
+            const hHand = document.getElementById('hourHand');
+            const mHand = document.getElementById('minHand');
+            const sHand = document.getElementById('secHand');
+
+            if(hHand) hHand.style.transform = `translateX(-50%) rotate(${hourDeg}deg)`;
+            if(mHand) mHand.style.transform = `translateX(-50%) rotate(${minDeg}deg)`;
+            if(sHand) sHand.style.transform = `translateX(-50%) rotate(${secDeg}deg)`;
+        }
+
+        // টাইমলাইন এবং কাউন্টডাউন কন্ট্রোলার
+        function managePageTimeline() {
+            const now = new Date().getTime();
+
+            // ডিভাইস লক চেক (একবার সাবমিট করলে সরাসরি সাকসেস কার্ড দেখাবে)
+            if (localStorage.getItem('studyZoneRegistered') === 'true') {
+                document.getElementById('waitingCard').style.display = 'none';
+                document.getElementById('formCard').style.display = 'none';
+                document.getElementById('expiredCard').style.display = 'none';
+                document.getElementById('successCard').style.display = 'block';
+                return;
+            }
+
+            // মোড ১: ৩১ মে সকাল ১১টার আগে (ওয়েটিং পেজ ও কাউন্টডাউন)
+            if (now < startTime) {
+                document.getElementById('waitingCard').style.display = 'block';
+                document.getElementById('formCard').style.display = 'none';
+                document.getElementById('expiredCard').style.display = 'none';
+                
+                const distance = startTime - now;
+                const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById('days').innerText = d < 10 ? '0' + d : d;
+                document.getElementById('hours').innerText = h < 10 ? '0' + h : h;
+                document.getElementById('minutes').innerText = m < 10 ? '0' + m : m;
+                document.getElementById('seconds').innerText = s < 10 ? '0' + s : s;
+            } 
+            // মোড ২: ফর্ম চালু (Active Registration)
+            else if (now >= startTime && now <= endTime) {
+                document.getElementById('waitingCard').style.display = 'none';
+                document.getElementById('expiredCard').style.display = 'none';
+                document.getElementById('formCard').style.display = 'block';
+            } 
+            // মোড ৩: ৫ জুন বিকেল ৪টার পর (Expired)
+            else {
+                document.getElementById('waitingCard').style.display = 'none';
+                document.getElementById('formCard').style.display = 'none';
+                document.getElementById('expiredCard').style.display = 'block';
+            }
+        }
+
+        // প্রতি সেকেন্ডে লাইভ রেন্ডারিং
+        setInterval(() => {
+            updateAnalogClock();
+            managePageTimeline();
+        }, 1000);
+
+        // পেজ লোডের সাথে সাথেই চালু হবে
+        updateAnalogClock();
+        managePageTimeline();
+
+        // DOB অটো-হাইফেন ফরম্যাট
         document.getElementById('dob').addEventListener('input', function (e) {
             let value = e.target.value.replace(/\D/g, '');
             let formatted = '';
@@ -321,30 +345,9 @@
             e.target.value = formatted;
         });
 
-        // ফর্ম সাবমিট প্রসেস
+        // ফর্ম সাবমিশন এবং ডাটা শিটে পাঠানো
         const form = document.getElementById('quizForm');
         form.addEventListener('submit', e => {
             e.preventDefault();
-            
             document.getElementById('submitBtn').disabled = true;
-            document.getElementById('submitBtn').innerText = "প্রসেস হচ্ছে...";
-
-            // ডাটা গুগল শিটে পাঠানোর কোড
-            fetch(targetURL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(Object.fromEntries(new FormData(form)))
-            })
-            .then(() => {
-                document.getElementById('formCard').style.display = 'none';
-                document.getElementById('successCard').style.display = 'block';
-            })
-            .catch(() => {
-                alert('কোথাও ভুল হয়েছে, আবার চেষ্টা করুন।');
-                document.getElementById('submitBtn').disabled = false;
-                document.getElementById('submitBtn').innerText = "রেজিস্ট্রেশন সাবমিট করুন";
-            });
-        });
-    </script>
-</body>
-</html>
+            document.getElementById('
