@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Registration - Study Zone</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #1e3a8a; /* Deep Navy */
+            --accent-color: #f59e0b; /* Bright Amber/Orange */
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        * {
+            box-shadow: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Hind Siliguri', 'Poppins', sans-serif;
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #fff;
+            position: relative;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            color: var(--text-main);
+            z-index: 1;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Logo Area */
+        .header-section {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .logo-container {
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 15px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            overflow: hidden;
+            border: 3px solid var(--primary-color);
+        }
+
+        .logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .brand-name {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        /* Moto Style */
+        .motto-box {
+            background: #eff6ff;
+            padding: 8px 15px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 10px;
+            border: 1px dashed #bfdbfe;
+        }
+
+        .motto-text {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Form Styling */
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .form-group label i {
+            margin-right: 6px;
+            color: var(--primary-color);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 18px;
+            font-size: 16px;
+            border: 2px solid #cbd5e1;
+            border-radius: 10px;
+            background-color: #f8fafc;
+            color: #0f172a;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            background-color: #fff;
+            box-shadow: 0 0 0 4px rgba(30, 58, 138, 0.15);
+        }
+
+        .helper-text {
+            display: block;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1d4ed8 100%);
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 16px rgba(30, 58, 138, 0.25);
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        /* Success Card Styling */
+        .success-card {
+            display: none;
+            text-align: center;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: #dcfce7;
+            color: #16a34a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin: 0 auto 25px;
+        }
+
+        .success-header {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .exam-details {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--accent-color);
+            text-align: left;
+        }
+
+        .exam-info-row {
+            font-size: 16px;
+            color: var(--text-main);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .exam-info-row:last-child { margin-bottom: 0; }
+        .exam-info-row span { color: #ef4444; font-weight: 700; }
+
+        .notice-box {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 12px;
+            padding: 18px;
+            font-size: 15px;
+            color: #b45309;
+            line-height: 1.6;
+            font-weight: 600;
+            text-align: justify;
+        }
+
+        .notice-highlight { color: #dc2626; font-weight: 700; }
+        .footer-credit { margin-top: 25px; font-size: 12px; color: var(--text-muted); }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div id="formCard">
+            <div class="header-section">
+                <div class="logo-container">
+                    <img src="https://i.ibb.co/6R22qg5b/study-zone-logo.png" alt="Study Zone Logo" class="logo-img">
+                </div>
+                
+                <h1 class="brand-name">STUDY ZONE</h1>
+                
+                <div class="motto-box">
+                    <span class="motto-text">STUDY TOGETHER, LEARN TOGETHER & ACHIEVE TOGETHER</span>
+                </div>
+            </div>
+
+            <form id="quizForm">
+                <div class="form-group">
+                    <label><i class="fa-solid fa-user"></i> Name</label>
+                    <input type="text" name="Name" class="form-control" placeholder="আপনার সম্পূর্ণ নাম লিখুন" required autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fa-solid fa-calendar-days"></i> Date of Birth (DD-MM-YYYY)</label>
+                    <input type="text" id="dob" name="DOB" class="form-control" placeholder="যেমন: 15-08-2002" required maxlength="10" autocomplete="off">
+                    <small class="helper-text">কীবোর্ড ব্যবহার করে ম্যানুয়ালি দিন-মাস-বছর লিখুন।</small>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fa-solid fa-user-shield"></i> Father's Name</label>
+                    <input type="text" name="FatherName" class="form-control" placeholder="আপনার বাবার নাম লিখুন" required autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fa-solid fa-phone"></i> Phone Number</label>
+                    <input type="tel" name="Phone" class="form-control" placeholder="১০ ডিজিটের মোবাইল নম্বর দিন" required pattern="[0-9]{10}" title="অনুগ্রহ করে ১০ ডিজিটের একটি বৈধ মোবাইল নম্বর দিন" autocomplete="off">
+                    <small class="helper-text">উদাহরণ: 9876543210</small>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fa-solid fa-envelope"></i> Email Number</label>
+                    <input type="email" name="Email" class="form-control" placeholder="আপনার সচল ইমেইল আইডি দিন" required autocomplete="off">
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">রেজিস্ট্রেশন সাবমিট করুন</button>
+            </form>
+        </div>
+
+        <div id="successCard" class="success-card">
+            <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+            
+            <h2 class="success-header">
+                SSC SELECTION POST PHASE XIV MOCK TEST - POWERED BY 'STUDY ZONE'
+            </h2>
+
+            <div class="exam-details">
+                <div class="exam-info-row">EXAM DATE: <span>06 JUNE 2026</span></div>
+                <div class="exam-info-row">EXAM TIME: <span>11:00 A.M. (I.S.T.)</span></div>
+            </div>
+
+            <div class="notice-box">
+                এক্সাম এর জন্য প্রয়োজনীয় আইডি পাসওয়ার্ড <span class="notice-highlight">05 জুন 2026 তারিখে বিকেল 4:30 (I.S.T.)</span> এর পরে রেজিস্টার্ড ইমেইল এ দিয়ে দেওয়া হবে, STAY TUNED.
+            </div>
+
+            <p class="footer-credit">© 2026 STUDY ZONE. All Rights Reserved.</p>
+        </div>
+
+    </div>
+
+    <script>
+        // --- আপনার Sheet.best এর কানেকশন লিংকটি এখানে যুক্ত করা হয়েছে ---
+        const targetURL = 'https://api.sheetbest.com/sheets/9adbc3dd-ca31-465a-ad7f-326c6706aea0';
+
+        // DOB অটো-হাইফেন লজিক (DD-MM-YYYY ফরম্যাটের জন্য)
+        document.getElementById('dob').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');
+            let formatted = '';
+            if (value.length > 0) {
+                formatted = value.substring(0, 2);
+                if (value.length > 2) formatted += '-' + value.substring(2, 4);
+                if (value.length > 4) formatted += '-' + value.substring(4, 8);
+            }
+            e.target.value = formatted;
+        });
+
+        // ফর্ম সাবমিট প্রসেস
+        const form = document.getElementById('quizForm');
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            
+            document.getElementById('submitBtn').disabled = true;
+            document.getElementById('submitBtn').innerText = "প্রসেস হচ্ছে...";
+
+            // ডাটা গুগল শিটে পাঠানোর কোড
+            fetch(targetURL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(Object.fromEntries(new FormData(form)))
+            })
+            .then(() => {
+                document.getElementById('formCard').style.display = 'none';
+                document.getElementById('successCard').style.display = 'block';
+            })
+            .catch(() => {
+                alert('কোথাও ভুল হয়েছে, আবার চেষ্টা করুন।');
+                document.getElementById('submitBtn').disabled = false;
+                document.getElementById('submitBtn').innerText = "রেজিস্ট্রেশন সাবমিট করুন";
+            });
+        });
+    </script>
+</body>
+</html>
