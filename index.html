@@ -15,6 +15,7 @@
             --accent-color: #f59e0b;
             --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             --card-bg: rgba(255, 255, 255, 0.95);
+            --inner-card-bg: #ffffff;
             --text-main: #1e293b;
             --text-muted: #64748b;
         }
@@ -48,8 +49,12 @@
             text-align: center;
         }
 
-        /* Header (লোগো সব সময় সবার উপরে থাকবে) */
-        .header-section { margin-bottom: 35px; }
+        /* Header Section (সবার উপরে সব সময় ফিক্সড থাকবে) */
+        .header-section { 
+            margin-bottom: 25px; 
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 20px;
+        }
         .logo-container {
             width: 110px;
             height: 110px;
@@ -64,63 +69,45 @@
             border: 3px solid var(--primary-color);
         }
         .logo-img { width: 100%; height: 100%; object-fit: cover; }
-        .brand-name { font-size: 28px; font-weight: 700; color: var(--primary-color); margin-bottom: 5px; }
+        .brand-name { font-size: 28px; font-weight: 700; color: var(--primary-color); margin-bottom: 5px; letter-spacing: 1px; }
         .motto-box {
             background: #eff6ff;
             padding: 8px 15px;
             border-radius: 50px;
             display: inline-block;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             border: 1px dashed #bfdbfe;
         }
-        .motto-text { font-size: 11px; font-weight: 700; color: var(--primary-color); font-family: 'Poppins', sans-serif; }
+        .motto-text { font-size: 11px; font-weight: 700; color: var(--primary-color); font-family: 'Poppins', sans-serif; letter-spacing: 0.5px; }
 
-        /* Form Styling */
-        #formCard { display: none; text-align: left; }
-        .form-group { margin-bottom: 22px; }
-        .form-group label { display: block; font-size: 14px; font-weight: 600; color: #334155; margin-bottom: 8px; }
-        .form-group label i { margin-right: 6px; color: var(--primary-color); }
-        .form-control {
-            width: 100%;
-            padding: 14px 18px;
-            font-size: 16px;
-            border: 2px solid #cbd5e1;
-            border-radius: 10px;
-            background-color: #f8fafc;
-            outline: none;
-            transition: all 0.3s;
+        /* Content Wrapper Cards */
+        .content-card {
+            background: var(--inner-card-bg);
+            border-radius: 15px;
+            padding: 25px 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            display: none; /* জাভাস্ক্রিপ্ট দিয়ে কন্ট্রোল হবে */
+            animation: fadeIn 0.5s ease-out forwards;
         }
-        .form-control:focus { border-color: var(--primary-color); background-color: #fff; box-shadow: 0 0 0 4px rgba(30, 58, 138, 0.15); }
-        .helper-text { display: block; font-size: 12px; color: var(--text-muted); margin-top: 5px; }
-        .submit-btn {
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, var(--primary-color) 0%, #1d4ed8 100%);
-            border: none;
-            border-radius: 10px;
-            color: #fff;
-            font-size: 18px;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 8px 16px rgba(30, 58, 138, 0.25);
-            transition: all 0.3s;
-        }
-        .submit-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
 
-        /* Timer / Waiting Section */
-        #waitingCard { display: none; }
-        .time-notice { font-size: 18px; font-weight: 700; color: #dc2626; margin-bottom: 25px; line-height: 1.6; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Waiting Area Styling (আপনার দেওয়া সিকোয়েন্স অনুযায়ী সাজানো) */
+        .time-notice { font-size: 19px; font-weight: 700; color: #dc2626; margin-bottom: 25px; line-height: 1.6; }
         
         /* Pure CSS Analog Clock */
         .clock {
-            width: 160px;
-            height: 160px;
+            width: 150px;
+            height: 150px;
             border: 6px solid var(--primary-color);
             border-radius: 50%;
             margin: 0 auto 25px;
             position: relative;
             background: #fff;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.1), 0 8px 16px rgba(0,0,0,0.1);
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.1), 0 6px 12px rgba(0,0,0,0.08);
         }
         .clock::after {
             content: '';
@@ -142,33 +129,72 @@
             background: #1e293b;
             border-radius: 4px;
         }
-        .hour { width: 4px; height: 40px; }
-        .minute { width: 3px; height: 55px; }
-        .second { width: 1.5px; height: 65px; background: #dc2626; }
+        .hour { width: 4px; height: 38px; }
+        .minute { width: 3px; height: 52px; }
+        .second { width: 1.5px; height: 60px; background: #dc2626; }
 
         /* Digital Countdown */
-        .countdown-title { font-size: 15px; font-weight: 600; color: var(--text-main); margin-bottom: 10px; }
+        .countdown-title { font-size: 16px; font-weight: 700; color: var(--text-main); margin-bottom: 15px; }
         .countdown-container { display: flex; justify-content: center; gap: 10px; }
         .countdown-box {
-            background: #1e3a8a;
+            background: var(--primary-color);
             color: #fff;
-            padding: 10px 15px;
+            padding: 10px;
             border-radius: 8px;
             min-width: 65px;
+            box-shadow: 0 4px 8px rgba(30, 58, 138, 0.2);
         }
         .countdown-number { font-size: 20px; font-weight: 700; font-family: 'Poppins', sans-serif; }
-        .countdown-label { font-size: 11px; margin-top: 2px; color: #93c5fd; }
+        .countdown-label { font-size: 11px; margin-top: 2px; color: #93c5fd; font-weight: 600; }
 
-        /* Success & Expired Card */
-        .success-card, #expiredCard { display: none; }
-        .success-icon { width: 80px; height: 80px; background: #dcfce7; color: #16a34a; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 40px; margin: 0 auto 25px; }
-        .success-header { font-size: 20px; font-weight: 700; color: var(--primary-color); margin-bottom: 20px; line-height: 1.5; }
-        .exam-details { background: #f8fafc; border-radius: 12px; padding: 20px; margin-bottom: 20px; border-left: 5px solid var(--accent-color); text-align: left; }
-        .exam-info-row { font-size: 16px; color: var(--text-main); margin-bottom: 10px; font-weight: 600; }
+        /* Form Styling */
+        #formCard { text-align: left; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 14px; font-weight: 600; color: #334155; margin-bottom: 8px; text-transform: uppercase; }
+        .form-group label i { margin-right: 6px; color: var(--primary-color); }
+        .form-control {
+            width: 100%;
+            padding: 13px 16px;
+            font-size: 16px;
+            border: 2px solid #cbd5e1;
+            border-radius: 10px;
+            background-color: #f8fafc;
+            outline: none;
+            color: #0f172a;
+            transition: all 0.3s;
+        }
+        .form-control:focus { border-color: var(--primary-color); background-color: #fff; box-shadow: 0 0 0 4px rgba(30, 58, 138, 0.15); }
+        .helper-text { display: block; font-size: 12px; color: var(--text-muted); margin-top: 5px; }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1d4ed8 100%);
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 6px 14px rgba(30, 58, 138, 0.25);
+            transition: all 0.3s;
+        }
+        .submit-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+        /* Success & Expired Card Common Elements */
+        .card-icon { width: 75px; height: 75px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 38px; margin: 0 auto 20px; }
+        .success-icon-style { background: #dcfce7; color: #16a34a; }
+        .expired-icon-style { background: #fee2e2; color: #ef4444; }
+        .card-header-text { font-size: 19px; font-weight: 700; color: var(--primary-color); margin-bottom: 18px; line-height: 1.5; }
+        
+        .exam-details { background: #f8fafc; border-radius: 12px; padding: 18px; margin-bottom: 18px; border-left: 5px solid var(--accent-color); text-align: left; }
+        .exam-info-row { font-size: 15px; color: var(--text-main); margin-bottom: 8px; font-weight: 600; }
+        .exam-info-row:last-child { margin-bottom: 0; }
         .exam-info-row span { color: #ef4444; font-weight: 700; }
-        .notice-box { background: #fffbeb; border: 1px solid #fde68a; border-radius: 12px; padding: 18px; font-size: 15px; color: #b45309; line-height: 1.6; font-weight: 600; text-align: justify; }
+        
+        .notice-box { background: #fffbeb; border: 1px solid #fde68a; border-radius: 12px; padding: 16px; font-size: 14px; color: #b45309; line-height: 1.6; font-weight: 600; text-align: justify; }
         .notice-highlight { color: #dc2626; font-weight: 700; }
-        .footer-credit { margin-top: 25px; font-size: 12px; color: var(--text-muted); }
+        .footer-credit { margin-top: 25px; font-size: 12px; color: var(--text-muted); font-weight: 600; }
     </style>
 </head>
 <body>
@@ -185,7 +211,7 @@
             </div>
         </div>
 
-        <div id="waitingCard">
+        <div id="waitingCard" class="content-card">
             <p class="time-notice"><i class="fa-solid fa-clock fa-spin"></i> REGISTRATION শুরু হবে 31 তারিখ সকাল 11:00 টা থেকে</p>
             
             <div class="clock">
@@ -203,7 +229,7 @@
             </div>
         </div>
 
-        <div id="formCard">
+        <div id="formCard" class="content-card">
             <form id="quizForm">
                 <div class="form-group">
                     <label><i class="fa-solid fa-user"></i> Name</label>
@@ -229,9 +255,9 @@
             </form>
         </div>
 
-        <div id="successCard" class="success-card">
-            <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
-            <h2 class="success-header">SSC SELECTION POST PHASE XIV MOCK TEST - POWERED BY 'STUDY ZONE'</h2>
+        <div id="successCard" class="content-card">
+            <div class="card-icon success-icon-style"><i class="fa-solid fa-circle-check"></i></div>
+            <h2 class="card-header-text">SSC SELECTION POST PHASE XIV MOCK TEST - POWERED BY 'STUDY ZONE'</h2>
             <div class="exam-details">
                 <div class="exam-info-row">EXAM DATE: <span>06 JUNE 2026</span></div>
                 <div class="exam-info-row">EXAM TIME: <span>11:00 A.M. (I.S.T.)</span></div>
@@ -241,9 +267,9 @@
             </div>
         </div>
 
-        <div id="expiredCard">
-            <div class="success-icon" style="background:#fee2e2; color:#ef4444;"><i class="fa-solid fa-circle-xmark"></i></div>
-            <h2 class="success-header" style="color:#dc2626;">রেজিস্ট্রেশন সময়কাল অতিক্রান্ত হয়েছে</h2>
+        <div id="expiredCard" class="content-card">
+            <div class="card-icon expired-icon-style"><i class="fa-solid fa-circle-xmark"></i></div>
+            <h2 class="card-header-text" style="color:#dc2626;">রেজিস্ট্রেশন সময়কাল অতিক্রান্ত হয়েছে</h2>
             <div class="notice-box" style="text-align:center; background:#f8fafc; border-color:#cbd5e1; color:#1e293b; font-size:16px;">
                 <strong>BETTER LUCK FOR NEXT TIME, STAY TUNED.</strong>
             </div>
@@ -255,11 +281,11 @@
     <script>
         const targetURL = 'https://api.sheetbest.com/sheets/9adbc3dd-ca31-465a-ad7f-326c6706aea0';
         
-        // ফর্ম চালুর এবং বন্ধের সময় (২০২৬ সাল)
+        // রেজিস্ট্রেশন টাইম সেট (২০২৬ সাল)
         const startTime = new Date("May 31, 2026 11:00:00").getTime();
         const endTime = new Date("June 5, 2026 16:00:00").getTime();
 
-        // অ্যানালগ ঘড়ির নিখুঁত লজিক
+        // রিয়েলটাইম এনালগ ঘড়ির মেকানিজম
         function updateAnalogClock() {
             const now = new Date();
             const hours = now.getHours();
@@ -279,61 +305,65 @@
             if(sHand) sHand.style.transform = `translateX(-50%) rotate(${secDeg}deg)`;
         }
 
-        // টাইমলাইন এবং কাউন্টডাউন কন্ট্রোলার
+        // টাইমলাইন এবং লাইভ কাউন্টডাউন কন্ট্রোলার
         function managePageTimeline() {
             const now = new Date().getTime();
 
-            // ডিভাইস লক চেক (একবার সাবমিট করলে সরাসরি সাকসেস কার্ড দেখাবে)
+            // কন্ডিশন ০: যদি এই ডিভাইস থেকে ইতিমধ্যে অ্যাপ্লাই হয়ে থাকে
             if (localStorage.getItem('studyZoneRegistered') === 'true') {
-                document.getElementById('waitingCard').style.display = 'none';
-                document.getElementById('formCard').style.display = 'none';
-                document.getElementById('expiredCard').style.display = 'none';
+                hideAllCards();
                 document.getElementById('successCard').style.display = 'block';
                 return;
             }
 
-            // মোড ১: ৩১ মে সকাল ১১টার আগে (ওয়েটিং পেজ ও কাউন্টডাউন)
+            // কন্ডিশন ১: ৩১ মে সকাল ১১টার আগে (ওয়েটিং এরিয়া মোড)
             if (now < startTime) {
+                hideAllCards();
                 document.getElementById('waitingCard').style.display = 'block';
-                document.getElementById('formCard').style.display = 'none';
-                document.getElementById('expiredCard').style.display = 'none';
                 
+                // রিয়েলটাইম থেকে টার্গেট টাইমের বিয়োগফল হিসেব
                 const distance = startTime - now;
                 const d = Math.floor(distance / (1000 * 60 * 60 * 24));
                 const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const s = Math.floor((distance % (1000 * 60)) / 1000);
 
+                // ডিজিটাল কাউন্টডাউন বক্সে লাইভ ডাটা পুশ
                 document.getElementById('days').innerText = d < 10 ? '0' + d : d;
                 document.getElementById('hours').innerText = h < 10 ? '0' + h : h;
                 document.getElementById('minutes').innerText = m < 10 ? '0' + m : m;
                 document.getElementById('seconds').innerText = s < 10 ? '0' + s : s;
             } 
-            // মোড ২: ফর্ম চালু (Active Registration)
+            // কন্ডিশন ২: ৩১ মে সকাল ১১টা থেকে ৫ জুন বিকেল ৪টা (রেজিস্ট্রেশন ওপেন)
             else if (now >= startTime && now <= endTime) {
-                document.getElementById('waitingCard').style.display = 'none';
-                document.getElementById('expiredCard').style.display = 'none';
+                hideAllCards();
                 document.getElementById('formCard').style.display = 'block';
             } 
-            // মোড ৩: ৫ জুন বিকেল ৪টার পর (Expired)
+            // কন্ডিশন ৩: ৫ জুন বিকেল ৪টার পর (রেজিস্ট্রেশন ক্লোজ)
             else {
-                document.getElementById('waitingCard').style.display = 'none';
-                document.getElementById('formCard').style.display = 'none';
+                hideAllCards();
                 document.getElementById('expiredCard').style.display = 'block';
             }
         }
 
-        // প্রতি সেকেন্ডে লাইভ রেন্ডারিং
+        function hideAllCards() {
+            document.getElementById('waitingCard').style.display = 'none';
+            document.getElementById('formCard').style.display = 'none';
+            document.getElementById('successCard').style.display = 'none';
+            document.getElementById('expiredCard').style.display = 'none';
+        }
+
+        // প্রতি ১ সেকেন্ড পর পর ঘড়ি ও ডিজিটাল টাইমার আপডেট করার ট্রিগার
         setInterval(() => {
             updateAnalogClock();
             managePageTimeline();
         }, 1000);
 
-        // পেজ লোডের সাথে সাথেই চালু হবে
+        // ইনস্ট্যান্ট পেজ লোড ফিক্সার
         updateAnalogClock();
         managePageTimeline();
 
-        // DOB অটো-হাইফেন ফরম্যাট
+        // DOB অটো-হাইফেন
         document.getElementById('dob').addEventListener('input', function (e) {
             let value = e.target.value.replace(/\D/g, '');
             let formatted = '';
@@ -350,4 +380,24 @@
         form.addEventListener('submit', e => {
             e.preventDefault();
             document.getElementById('submitBtn').disabled = true;
-            document.getElementById('
+            document.getElementById('submitBtn').innerText = "প্রসেস হচ্ছে...";
+
+            fetch(targetURL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(Object.fromEntries(new FormData(form)))
+            })
+            .then(() => {
+                localStorage.setItem('studyZoneRegistered', 'true');
+                hideAllCards();
+                document.getElementById('successCard').style.display = 'block';
+            })
+            .catch(() => {
+                alert('কোথাও ভুল হয়েছে, আবার চেষ্টা করুন।');
+                document.getElementById('submitBtn').disabled = false;
+                document.getElementById('submitBtn').innerText = "রেজিস্ট্রেশন সাবমিট করুন";
+            });
+        });
+    </script>
+</body>
+</html>
