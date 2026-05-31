@@ -69,7 +69,10 @@
             overflow: hidden;
             border: 3px solid var(--primary-color);
         }
-        .logo-img { width: 100%; height: 100%; object-fit: cover; }
+        .logo-svg-main {
+            width: 65px;
+            height: 65px;
+        }
         .brand-name { font-size: 28px; font-weight: 700; color: var(--primary-color); margin-bottom: 5px; letter-spacing: 1px; }
         .motto-box {
             background: #eff6ff;
@@ -139,7 +142,7 @@
         .exam-info-row:last-child { margin-bottom: 0; }
         .exam-info-row span { color: #ef4444; font-weight: 700; }
         
-        .notice-box { background: #fffbeb; border: 1px solid #fde68a; border-radius: 12px; padding: 16px; font-size: 14px; color: #b45309; line-height: 1.6; font-weight: 600; text-align: justify; }
+        .notice-box { background: #fffbeb; border: 1px solid #fde68a; border-radius: 12px; padding: 16px; font-size: 14px; color: #b45309; line-height: 1.6; font-weight: 600; text-align: justify; margin-bottom: 20px; }
         .notice-highlight { color: #dc2626; font-weight: 700; }
         .footer-credit { margin-top: 25px; font-size: 12px; color: var(--text-muted); font-weight: 600; }
 
@@ -150,21 +153,36 @@
             margin-bottom: 25px;
         }
 
-        /* পিডিএফ স্লিপের প্রফেশনাল ডিজাইন টেমপ্লেট */
+        /* টেস্ট রিসেট বাটনের স্টাইল */
+        .reset-test-btn {
+            background: linear-gradient(135deg, #475569 0%, #334155 100%) !important;
+            box-shadow: 0 6px 14px rgba(71, 85, 105, 0.25) !important;
+            display: none;
+        }
+
+        /* পিডিএফ স্লিপের প্রফেশনাল ডিজাইন টেমপ্লেট (পুরোপুরি ফিক্সড) */
         #pdfTemplate {
             display: none;
-            padding: 40px;
+            padding: 30px;
             color: #1e293b;
             background: #ffffff;
         }
-        .pdf-header { text-align: center; border-bottom: 3px double #1e3a8a; padding-bottom: 15px; margin-bottom: 30px; }
+        .pdf-header { text-align: center; border-bottom: 3px double #1e3a8a; padding-bottom: 15px; margin-bottom: 25px; }
+        .pdf-logo-box { width: 75px; height: 75px; margin: 0 auto 10px; display: block; }
         .pdf-title { font-size: 26px; color: #1e3a8a; font-weight: 700; margin-bottom: 5px; }
         .pdf-subtitle { font-size: 11px; color: #f59e0b; font-weight: 600; letter-spacing: 1px; }
-        .pdf-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
-        .pdf-table th, .pdf-table td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #e2e8f0; font-size: 15px; }
+        .pdf-table { width: 100%; border-collapse: collapse; margin-bottom: 25px; }
+        .pdf-table th, .pdf-table td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #e2e8f0; font-size: 14px; }
         .pdf-table th { background-color: #f8fafc; color: #1e3a8a; font-weight: 700; width: 35%; }
         .pdf-table td { color: #334155; font-weight: 600; }
-        .pdf-footer { text-align: center; font-size: 11px; color: #64748b; border-top: 1px dashed #cbd5e1; padding-top: 15px; margin-top: 40px; }
+        
+        /* মক টেস্ট বক্স ফিক্স - কন্টেন্ট যাতে না কাটে তার জন্য মার্জিন ও প্যাডিং সেটআপ */
+        .pdf-mock-box { background: #f8fafc; border-left: 4px solid #f59e0b; padding: 15px; border-radius: 6px; margin-bottom: 35px; }
+        .pdf-mock-title { font-size: 13px; font-weight: bold; color: #1e3a8a; margin-bottom: 8px; }
+        .pdf-mock-line { font-size: 12px; color: #334155; font-weight: 600; margin-bottom: 4px; }
+        .pdf-mock-notice { font-size: 11px; color: #dc2626; font-weight: bold; margin-top: 10px; line-height: 1.4; }
+        
+        .pdf-footer { text-align: center; font-size: 11px; color: #64748b; border-top: 1px dashed #cbd5e1; padding-top: 15px; margin-top: 30px; padding-bottom: 10px; }
     </style>
 </head>
 <body>
@@ -173,7 +191,12 @@
         
         <div class="header-section">
             <div class="logo-container">
-                <img src="logo.png" alt="Study Zone Logo" class="logo-img">
+                <svg class="logo-svg-main" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="#1e3a8a" stroke-width="3"/>
+                    <path d="M25 65 L50 30 L75 65 Z" fill="#1e3a8a"/>
+                    <path d="M35 65 L50 44 L65 65 Z" fill="#f59e0b"/>
+                    <circle cx="50" cy="22" r="6" fill="#16a34a"/>
+                </svg>
             </div>
             <h1 class="brand-name">STUDY ZONE</h1>
             <div class="motto-box">
@@ -222,6 +245,10 @@
             <div class="notice-box">
                 এক্সাম এর জন্য প্রয়োজনীয় আইডি পাসওয়ার্ড <span class="notice-highlight">05 জুন 2026 তারিখে বিকেল 4:30 (I.S.T.)</span> এর পরে রেজিস্টার্ড ইমেইল এ দিয়ে দেওয়া হবে, STAY TUNED.
             </div>
+
+            <button onclick="resetTestForm()" id="testResetBtn" class="submit-btn reset-test-btn">
+                <i class="fa-solid fa-rotate-right"></i> আবার টেস্ট করুন (Reset Form)
+            </button>
         </div>
 
         <p class="footer-credit">© 2026 STUDY ZONE. All Rights Reserved.</p>
@@ -229,9 +256,15 @@
 
     <div id="pdfTemplate">
         <div class="pdf-header">
+            <svg class="pdf-logo-box" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="45" fill="none" stroke="#1e3a8a" stroke-width="3"/>
+                <path d="M25 65 L50 30 L75 65 Z" fill="#1e3a8a"/>
+                <path d="M35 65 L50 44 L65 65 Z" fill="#f59e0b"/>
+                <circle cx="50" cy="22" r="6" fill="#16a34a"/>
+            </svg>
             <div class="pdf-title">STUDY ZONE</div>
             <div class="pdf-subtitle">STUDY TOGETHER, LEARN TOGETHER & ACHIEVE TOGETHER</div>
-            <p style="font-size: 15px; font-weight: 700; color: #16a34a; margin-top: 12px; text-align: center;">REGISTRATION CONFIRMATION SLIP</p>
+            <p style="font-size: 14px; font-weight: 700; color: #16a34a; margin-top: 10px; text-align: center; letter-spacing: 0.5px;">REGISTRATION CONFIRMATION SLIP</p>
         </div>
         
         <table class="pdf-table">
@@ -243,26 +276,29 @@
             <tr><th>Status</th><td style="color: #16a34a; font-weight: bold;">SUCCESSFUL</td></tr>
         </table>
 
-        <div style="background: #f8fafc; border-left: 4px solid #f59e0b; padding: 15px; border-radius: 6px; margin-bottom: 20px;">
-            <p style="font-size: 13px; font-weight: bold; color: #1e3a8a; margin-bottom: 5px;">MOCK TEST DETAILS:</p>
-            <p style="font-size: 12px; color: #334155; font-weight: 600;">• EXAM NAME: SSC SELECTION POST PHASE XIV MOCK TEST</p>
-            <p style="font-size: 12px; color: #334155; font-weight: 600;">• EXAM DATE: 06 JUNE 2026 | TIME: 11:00 A.M. (I.S.T.)</p>
-            <p style="font-size: 11px; color: #dc2626; font-weight: bold; margin-top: 8px;">Notice: Exam ID & Password will be sent to your registered Email after 05 June 2026, 04:30 P.M.</p>
+        <div class="pdf-mock-box">
+            <p class="pdf-mock-title">MOCK TEST DETAILS:</p>
+            <p class="pdf-mock-line">• EXAM NAME: SSC SELECTION POST PHASE XIV MOCK TEST</p>
+            <p class="pdf-mock-line">• EXAM DATE: 06 JUNE 2026 | TIME: 11:00 A.M. (I.S.T.)</p>
+            <p class="pdf-mock-notice">Notice: Exam ID & Password will be sent to your registered Email after 05 June 2026, 04:30 P.M.</p>
         </div>
 
         <div class="pdf-footer">
             <p>This is an electronically generated document. No signature required.</p>
-            <p style="margin-top: 5px;">© 2026 STUDY ZONE. All Rights Reserved.</p>
+            <p style="margin-top: 4px;">© 2026 STUDY ZONE. All Rights Reserved.</p>
         </div>
     </div>
 
     <script>
         const targetURL = 'https://api.sheetbest.com/sheets/9adbc3dd-ca31-465a-ad7f-326c6706aea0';
 
-        // ডিভাইস লকিং চেক (মাস্টার কী অ্যাকাউন্টের জন্য এটি বাইপাস হবে)
+        // ডিভাইস লকিং চেক
         if (localStorage.getItem('studyZoneRegistered') === 'true') {
             document.getElementById('formCard').style.display = 'none';
             document.getElementById('successCard').style.display = 'block';
+            if(localStorage.getItem('p_phone') === "9999999999") {
+                document.getElementById('testResetBtn').style.display = 'block';
+            }
         }
 
         // DOB অটো-হাইফেন মেকানিজম
@@ -286,7 +322,7 @@
 
             const phoneNumber = document.getElementById('formPhone').value;
 
-            // লোকাল স্টোরেজে ডেটা টেম্পোরারি সেভ করা পিডিএফ ডেকোরেশনের জন্য
+            // লোকাল স্টোরেজে ডেটা সেভ করা
             localStorage.setItem('p_name', document.getElementById('formName').value);
             localStorage.setItem('p_dob', document.getElementById('dob').value);
             localStorage.setItem('p_father', document.getElementById('formFather').value);
@@ -299,11 +335,10 @@
                 body: JSON.stringify(Object.fromEntries(new FormData(form)))
             })
             .then(() => {
-                // মাস্টার কী সিকিউরিটি লজিক: নম্বর যদি 9999999999 হয়, তবে ডিভাইস লক হবে না
-                if (phoneNumber !== "9999999999") {
-                    localStorage.setItem('studyZoneRegistered', 'true');
+                if (phoneNumber === "9999999999") {
+                    document.getElementById('testResetBtn').style.display = 'block';
                 } else {
-                    console.log("Master Key used! Device will not be locked.");
+                    localStorage.setItem('studyZoneRegistered', 'true');
                 }
                 
                 document.getElementById('formCard').style.display = 'none';
@@ -315,6 +350,22 @@
                 document.getElementById('submitBtn').innerText = "রেজিস্ট্রেশন সাবমিট করুন";
             });
         });
+
+        // মাস্টার রিসেট ফাংশন
+        function resetTestForm() {
+            localStorage.removeItem('studyZoneRegistered');
+            localStorage.removeItem('p_name');
+            localStorage.removeItem('p_dob');
+            localStorage.removeItem('p_father');
+            localStorage.removeItem('p_phone');
+            localStorage.removeItem('p_email');
+            form.reset();
+            document.getElementById('successCard').style.display = 'none';
+            document.getElementById('testResetBtn').style.display = 'none';
+            document.getElementById('formCard').style.display = 'block';
+            document.getElementById('submitBtn').disabled = false;
+            document.getElementById('submitBtn').innerText = "রেজিস্ট্রেশন সাবমিট করুন";
+        }
 
         // পিডিএফ জেনারেটর ফাংশন
         function generateRegistrationPDF() {
@@ -329,10 +380,10 @@
             element.style.display = 'block'; 
 
             const opt = {
-                margin:       15,
+                margin:       [10, 15, 15, 15], // মার্জিন ফিক্সড করা হলো যাতে কন্টেন্ট না কাটে
                 filename:     'StudyZone_Registration_' + name.replace(/\s+/g, '_') + '.pdf',
                 image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2, useCORS: true },
+                html2canvas:  { scale: 2, useCORS: true, logging: false },
                 jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
 
