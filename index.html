@@ -69,10 +69,7 @@
             overflow: hidden;
             border: 3px solid var(--primary-color);
         }
-        .logo-svg-main {
-            width: 65px;
-            height: 65px;
-        }
+        .logo-img { width: 100%; height: 100%; object-fit: cover; }
         .brand-name { font-size: 28px; font-weight: 700; color: var(--primary-color); margin-bottom: 5px; letter-spacing: 1px; }
         .motto-box {
             background: #eff6ff;
@@ -160,7 +157,7 @@
             display: none;
         }
 
-        /* পিডিএফ স্লিপের প্রফেশনাল ডিজাইন টেমপ্লেট (পুরোপুরি ফিক্সড) */
+        /* পিডিএফ স্লিপের প্রফেশনাল ডিজাইন টেমপ্লেট */
         #pdfTemplate {
             display: none;
             padding: 30px;
@@ -168,7 +165,18 @@
             background: #ffffff;
         }
         .pdf-header { text-align: center; border-bottom: 3px double #1e3a8a; padding-bottom: 15px; margin-bottom: 25px; }
-        .pdf-logo-box { width: 75px; height: 75px; margin: 0 auto 10px; display: block; }
+        .pdf-logo-container {
+            width: 85px;
+            height: 85px;
+            margin: 0 auto 10px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--primary-color);
+            overflow: hidden;
+        }
         .pdf-title { font-size: 26px; color: #1e3a8a; font-weight: 700; margin-bottom: 5px; }
         .pdf-subtitle { font-size: 11px; color: #f59e0b; font-weight: 600; letter-spacing: 1px; }
         .pdf-table { width: 100%; border-collapse: collapse; margin-bottom: 25px; }
@@ -176,8 +184,8 @@
         .pdf-table th { background-color: #f8fafc; color: #1e3a8a; font-weight: 700; width: 35%; }
         .pdf-table td { color: #334155; font-weight: 600; }
         
-        /* মক টেস্ট বক্স ফিক্স - কন্টেন্ট যাতে না কাটে তার জন্য মার্জিন ও প্যাডিং সেটআপ */
-        .pdf-mock-box { background: #f8fafc; border-left: 4px solid #f59e0b; padding: 15px; border-radius: 6px; margin-bottom: 35px; }
+        /* মক টেস্ট কন্টেন্ট ফিক্স মার্জিন */
+        .pdf-mock-box { background: #f8fafc; border-left: 4px solid #f59e0b; padding: 15px; border-radius: 6px; margin-bottom: 35px; text-align: left; }
         .pdf-mock-title { font-size: 13px; font-weight: bold; color: #1e3a8a; margin-bottom: 8px; }
         .pdf-mock-line { font-size: 12px; color: #334155; font-weight: 600; margin-bottom: 4px; }
         .pdf-mock-notice { font-size: 11px; color: #dc2626; font-weight: bold; margin-top: 10px; line-height: 1.4; }
@@ -191,12 +199,7 @@
         
         <div class="header-section">
             <div class="logo-container">
-                <svg class="logo-svg-main" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="50" cy="50" r="45" fill="none" stroke="#1e3a8a" stroke-width="3"/>
-                    <path d="M25 65 L50 30 L75 65 Z" fill="#1e3a8a"/>
-                    <path d="M35 65 L50 44 L65 65 Z" fill="#f59e0b"/>
-                    <circle cx="50" cy="22" r="6" fill="#16a34a"/>
-                </svg>
+                <img src="logo.png" alt="Study Zone Logo" class="logo-img">
             </div>
             <h1 class="brand-name">STUDY ZONE</h1>
             <div class="motto-box">
@@ -256,12 +259,9 @@
 
     <div id="pdfTemplate">
         <div class="pdf-header">
-            <svg class="pdf-logo-box" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="50" cy="50" r="45" fill="none" stroke="#1e3a8a" stroke-width="3"/>
-                <path d="M25 65 L50 30 L75 65 Z" fill="#1e3a8a"/>
-                <path d="M35 65 L50 44 L65 65 Z" fill="#f59e0b"/>
-                <circle cx="50" cy="22" r="6" fill="#16a34a"/>
-            </svg>
+            <div class="pdf-logo-container">
+                <img src="logo.png" alt="Logo" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
             <div class="pdf-title">STUDY ZONE</div>
             <div class="pdf-subtitle">STUDY TOGETHER, LEARN TOGETHER & ACHIEVE TOGETHER</div>
             <p style="font-size: 14px; font-weight: 700; color: #16a34a; margin-top: 10px; text-align: center; letter-spacing: 0.5px;">REGISTRATION CONFIRMATION SLIP</p>
@@ -367,7 +367,7 @@
             document.getElementById('submitBtn').innerText = "রেজিস্ট্রেশন সাবমিট করুন";
         }
 
-        // পিডিএফ জেনারেটর ফাংশন
+        // পিডিএফ জেনারেটর ফাংশন (ইমেজ লোডিং এবং মার্জিন পুরোপুরি ফিক্সড)
         function generateRegistrationPDF() {
             const name = localStorage.getItem('p_name') || "Candidate";
             document.getElementById('pdfName').innerText = name;
@@ -380,16 +380,24 @@
             element.style.display = 'block'; 
 
             const opt = {
-                margin:       [10, 15, 15, 15], // মার্জিন ফিক্সড করা হলো যাতে কন্টেন্ট না কাটে
+                margin:       [10, 15, 20, 15], // মার্জিন আরো নিখুঁত করা হলো যাতে নিচের কন্টেন্ট ১০০% চলে আসে
                 filename:     'StudyZone_Registration_' + name.replace(/\s+/g, '_') + '.pdf',
                 image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2, useCORS: true, logging: false },
+                html2canvas:  { 
+                    scale: 2, 
+                    useCORS: true, 
+                    allowTaint: true, // ইমেজ রেন্ডারিং এর পারমিশন ট্রিক
+                    logging: false 
+                },
                 jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
 
-            html2pdf().set(opt).from(element).save().then(() => {
-                element.style.display = 'none'; 
-            });
+            // ইমেজ সম্পূর্ণ লোড হওয়ার জন্য সামান্য মিলি-সেকেন্ড অপেক্ষা করে পিডিএফ তৈরি করবে
+            setTimeout(() => {
+                html2pdf().set(opt).from(element).save().then(() => {
+                    element.style.display = 'none'; 
+                });
+            }, 250);
         }
     </script>
 </body>
